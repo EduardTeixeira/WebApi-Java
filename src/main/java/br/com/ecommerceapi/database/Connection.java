@@ -21,9 +21,9 @@ public class Connection {
 
 			Class.forName(driverName);
 
-			String serverName = "localhost";
+			String serverName = "localhost:3306";
 
-			String mydatabase = "ecommerce";
+			String mydatabase = "basetest";
 
 			String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 

@@ -6,7 +6,7 @@ public class Provider {
 
 	private String name;
 
-	private String cnpj;
+	private String email;
 
 	public Integer getId() {
 		return id;
@@ -24,12 +24,12 @@ public class Provider {
 		this.name = name;
 	}
 
-	public String getCnpj() {
-		return cnpj;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

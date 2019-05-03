@@ -6,7 +6,9 @@ public class Product {
 
 	private String name;
 
-	private Double value;
+	private Double costPurchase;
+
+	private Double costSale;
 
 	private Integer quantity;
 
@@ -26,12 +28,20 @@ public class Product {
 		this.name = name;
 	}
 
-	public Double getValue() {
-		return value;
+	public Double getCostPurchase() {
+		return costPurchase;
 	}
 
-	public void setValue(Double value) {
-		this.value = value;
+	public void setCostPurchase(Double costPurchase) {
+		this.costPurchase = costPurchase;
+	}
+
+	public Double getCostSale() {
+		return costSale;
+	}
+
+	public void setCostSale(Double costSale) {
+		this.costSale = costSale;
 	}
 
 	public Integer getQuantity() {

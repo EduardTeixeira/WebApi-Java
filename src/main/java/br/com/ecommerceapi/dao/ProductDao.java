@@ -3,17 +3,21 @@ package br.com.ecommerceapi.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import br.com.ecommerceapi.entity.Product;
 import br.com.ecommerceapi.util.ConnectionConfiguration;
 
+@Service
 public class ProductDao {
 
-	private void delete(String campaign, String table) throws Exception {
+	public void delete(Product product) throws Exception {
 
 		PreparedStatement prepStat = null;
-
 		Connection conn = null;
-
 		ResultSet rs = null;
 
 		try {
@@ -23,11 +27,12 @@ public class ProductDao {
 			StringBuilder sql = new StringBuilder();
 
 			sql = new StringBuilder();
-			sql.append(" DELETE FROM  " + table + " WHERE campaing_id = ? ");
+			sql.append(" DELETE FROM product");
+			sql.append(" WHERE id = ?");
 
 			prepStat = conn.prepareStatement(sql.toString());
 
-			prepStat.setString(1, campaign);
+			prepStat.setInt(1, product.getId());
 
 			prepStat.execute();
 
@@ -45,11 +50,10 @@ public class ProductDao {
 
 	}
 
-	public Long saveAdset(String user, Long storeId, Long campaignId) throws Exception {
+	public Long insert(Product product) throws Exception {
+
 		PreparedStatement prepStat = null;
-
 		Connection conn = null;
-
 		ResultSet rs = null;
 
 		try {
@@ -59,18 +63,19 @@ public class ProductDao {
 			StringBuilder sql = new StringBuilder();
 
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO facebook_adset_imports");
-			sql.append(
-					" ( store_id, campaign_id, adset_id, adset_name, billing_event, bid_strategy, daily_budget, created_user, created_at)");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			sql.append(" INSERT INTO product");
+			sql.append(" (name, cost_purchase, cost_sale, quantity)");
+			sql.append(" VALUES(?, ?, ?, ?)");
 
 			prepStat = conn.prepareStatement(sql.toString(), PreparedStatement.RETURN_GENERATED_KEYS);
 
-			prepStat.setLong(1, storeId);
+			prepStat.setInt(1, product.getId());
 
-			prepStat.setLong(2, campaignId);
+			prepStat.setDouble(2, product.getCostPurchase());
 
-			prepStat.setString(8, user);
+			prepStat.setDouble(3, product.getCostSale());
+
+			prepStat.setInt(4, product.getQuantity());
 
 			prepStat.execute();
 
@@ -94,11 +99,10 @@ public class ProductDao {
 		}
 	}
 
-	public Long getAds(FacebookDatum ads, Long storeId, Long idAdset) throws Exception {
+	public List<Product> select() throws Exception {
+
 		PreparedStatement prepStat = null;
-
 		Connection conn = null;
-
 		ResultSet rs = null;
 
 		try {
@@ -108,23 +112,34 @@ public class ProductDao {
 			StringBuilder sql = new StringBuilder();
 
 			sql = new StringBuilder();
-			sql.append(" select id from facebook_ads_imports where store_id = ? and adset_id = ? and ads_id = ?");
+			sql.append(" SELECT id, name, cost_purchase, cost_sale, quantity");
+			sql.append(" FROM product");
 
 			prepStat = conn.prepareStatement(sql.toString());
 
-			prepStat.setLong(1, storeId);
-
-			prepStat.setLong(2, idAdset);
-
-			prepStat.setLong(3, new Long(ads.getAdsId()));
-
 			rs = prepStat.executeQuery();
 
-			if (rs.next()) {
-				return rs.getLong("id");
+			List<Product> listProduct = new ArrayList<Product>();
+
+			while (rs.next()) {
+
+				Product product = new Product();
+
+				product.setId(rs.getInt("id"));
+
+				product.setName(rs.getString("name"));
+
+				product.setCostPurchase(rs.getDouble("cost_purchase"));
+
+				product.setCostSale(rs.getDouble("cost_sale"));
+
+				product.setQuantity(rs.getInt("quantity"));
+
+				listProduct.add(product);
+
 			}
 
-			return null;
+			return listProduct;
 
 		} catch (Exception e) {
 
@@ -139,11 +154,10 @@ public class ProductDao {
 		}
 	}
 
-	public void updatedAdset(String user, Long idAdset) throws Exception {
+	public void update(Product product) throws Exception {
+
 		PreparedStatement prepStat = null;
-
 		Connection conn = null;
-
 		ResultSet rs = null;
 
 		try {
@@ -153,15 +167,21 @@ public class ProductDao {
 			StringBuilder sql = new StringBuilder();
 
 			sql = new StringBuilder();
-			sql.append(
-					" UPDATE facebook_adset_imports set billing_event=?, bid_strategy=?, daily_budget=?, updated_user=?, updated_at=? ");
+			sql.append(" UPDATE product");
+			sql.append(" SET name = ?, cost_purchase = ?, cost_sale = ?, quantity = ?");
 			sql.append(" WHERE id = ?");
 
 			prepStat = conn.prepareStatement(sql.toString());
 
-			prepStat.setString(4, user);
+			prepStat.setString(1, product.getName());
 
-			prepStat.setLong(6, idAdset);
+			prepStat.setDouble(2, product.getCostPurchase());
+
+			prepStat.setDouble(3, product.getCostSale());
+
+			prepStat.setInt(4, product.getQuantity());
+
+			prepStat.setInt(5, product.getId());
 
 			prepStat.execute();
 
