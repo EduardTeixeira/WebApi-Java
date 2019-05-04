@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping("/v1/test")
-public class TesteController {
-	
+public class TestController {
+
 	@RequestMapping(path = "/ping", method = RequestMethod.GET)
 	@CrossOrigin
 	public String index() {
-		return "Spring boot funcionando !!!";
+		return "API Response - OK !";
 	}
 
 }

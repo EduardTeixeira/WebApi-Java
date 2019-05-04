@@ -25,7 +25,6 @@ public class ProviderDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-			sql = new StringBuilder();
 			sql.append(" DELETE FROM provider");
 			sql.append(" WHERE id = ?");
 
@@ -60,8 +59,6 @@ public class ProviderDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" INSERT INTO provider");
 			sql.append(" (name, email)");
 			sql.append(" VALUES(?, ?)");
@@ -105,8 +102,6 @@ public class ProviderDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" SELECT id, name, email");
 			sql.append(" FROM provider");
 
@@ -156,8 +151,6 @@ public class ProviderDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" UPDATE provider");
 			sql.append(" SET name = ?, email = ?");
 			sql.append(" WHERE id = ?");

@@ -25,7 +25,6 @@ public class UserDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-			sql = new StringBuilder();
 			sql.append(" DELETE FROM user");
 			sql.append(" WHERE id = ?");
 
@@ -60,8 +59,6 @@ public class UserDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" INSERT INTO user");
 			sql.append(" (username, password)");
 			sql.append(" VALUES(?, ?)");
@@ -105,8 +102,6 @@ public class UserDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" SELECT id, username, password");
 			sql.append(" FROM user");
 
@@ -156,8 +151,6 @@ public class UserDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" UPDATE user");
 			sql.append(" SET username = ?, password = ?");
 			sql.append(" WHERE id = ?");

@@ -25,8 +25,6 @@ public class ProductDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" DELETE FROM product");
 			sql.append(" WHERE id = ?");
 
@@ -61,8 +59,6 @@ public class ProductDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" INSERT INTO product");
 			sql.append(" (name, cost_purchase, cost_sale, quantity)");
 			sql.append(" VALUES(?, ?, ?, ?)");
@@ -110,8 +106,6 @@ public class ProductDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" SELECT id, name, cost_purchase, cost_sale, quantity");
 			sql.append(" FROM product");
 
@@ -165,8 +159,6 @@ public class ProductDao {
 			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
-
-			sql = new StringBuilder();
 			sql.append(" UPDATE product");
 			sql.append(" SET name = ?, cost_purchase = ?, cost_sale = ?, quantity = ?");
 			sql.append(" WHERE id = ?");
