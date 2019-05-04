@@ -14,7 +14,7 @@ import br.com.ecommerceapi.util.ConnectionConfiguration;
 @Service
 public class ProductDao {
 
-	public void delete(Product product) throws Exception {
+	public void delete(Integer id) throws Exception {
 
 		PreparedStatement prepStat = null;
 		Connection conn = null;
@@ -30,7 +30,7 @@ public class ProductDao {
 
 			prepStat = conn.prepareStatement(sql.toString());
 
-			prepStat.setInt(1, product.getId());
+			prepStat.setInt(1, id);
 
 			prepStat.execute();
 

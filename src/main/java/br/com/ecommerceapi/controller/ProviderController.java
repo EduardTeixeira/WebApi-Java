@@ -1,42 +1,55 @@
 package br.com.ecommerceapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ecommerceapi.entity.Provider;
 import br.com.ecommerceapi.service.ProviderService;
 
 @RestController
-@RequestMapping("/v1/provider")
+@RequestMapping("/v1")
 public class ProviderController {
-	
+
 	@Autowired
 	private ProviderService providerService;
-	
-	@RequestMapping(path = "/select", method = RequestMethod.GET)
+
+	@RequestMapping(path = "/provider", method = RequestMethod.GET)
 	@CrossOrigin
-	public String select() {
-		return "Spring boot funcionando !!!";
+	public List<Provider> select() throws Exception {
+
+		return providerService.select();
+
 	}
 
-	@RequestMapping(path = "/insert", method = RequestMethod.POST)
+	@RequestMapping(path = "/provider", method = RequestMethod.POST)
 	@CrossOrigin
-	public String insert() {
-		return "Spring boot funcionando !!!";
+	public void insert(@RequestBody Provider provider) throws Exception {
+
+		providerService.insert(provider);
+
 	}
 
-	@RequestMapping(path = "/update", method = RequestMethod.PUT)
+	@RequestMapping(path = "/provider", method = RequestMethod.PUT)
 	@CrossOrigin
-	public String update() {
-		return "Spring boot funcionando !!!";
+	public void update(@RequestBody Provider provider) throws Exception {
+
+		providerService.update(provider);
+
 	}
 
-	@RequestMapping(path = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/provider", method = RequestMethod.DELETE)
 	@CrossOrigin
-	public String delete() {
-		return "Spring boot funcionando !!!";
+	public void delete(@RequestParam("id") Integer id) throws Exception {
+
+		providerService.delete(id);
+
 	}
 
 }

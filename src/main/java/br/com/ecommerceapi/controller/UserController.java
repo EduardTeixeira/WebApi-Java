@@ -2,41 +2,50 @@ package br.com.ecommerceapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ecommerceapi.entity.User;
 import br.com.ecommerceapi.service.UserService;
 
 @RestController
-@RequestMapping("/v1/user")
+@RequestMapping("/v1")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(path = "/select", method = RequestMethod.GET)
+	@RequestMapping(path = "/user", method = RequestMethod.GET)
 	@CrossOrigin
-	public String select() {
+	public String select() throws Exception {
 		return "Spring boot funcionando !!!";
 	}
 
-	@RequestMapping(path = "/insert", method = RequestMethod.POST)
+	@RequestMapping(path = "/user", method = RequestMethod.POST)
 	@CrossOrigin
-	public String insert() {
-		return "Spring boot funcionando !!!";
+	public void insert(@RequestBody User user) throws Exception {
+
+		userService.insert(user);
+
 	}
 
-	@RequestMapping(path = "/update", method = RequestMethod.PUT)
+	@RequestMapping(path = "/user", method = RequestMethod.PUT)
 	@CrossOrigin
-	public String update() {
-		return "Spring boot funcionando !!!";
+	public void update(@RequestBody User user) throws Exception {
+
+		userService.update(user);
+
 	}
 
-	@RequestMapping(path = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/user", method = RequestMethod.DELETE)
 	@CrossOrigin
-	public String delete() {
-		return "Spring boot funcionando !!!";
+	public void delete(@RequestParam("id") Integer id) throws Exception {
+
+		userService.delete(id);
+
 	}
 
 }

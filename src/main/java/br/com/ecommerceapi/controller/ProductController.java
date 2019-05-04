@@ -1,42 +1,55 @@
 package br.com.ecommerceapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ecommerceapi.entity.Product;
 import br.com.ecommerceapi.service.ProductService;
 
 @RestController
-@RequestMapping("/v1/product")
+@RequestMapping("/v1")
 public class ProductController {
-	
+
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping(path = "/select", method = RequestMethod.GET)
+	@RequestMapping(path = "/product", method = RequestMethod.GET)
 	@CrossOrigin
-	public String select() {
-		return "Spring boot funcionando !!!";
+	public List<Product> select() throws Exception {
+
+		return productService.select();
+
 	}
 
-	@RequestMapping(path = "/insert", method = RequestMethod.POST)
+	@RequestMapping(path = "/product", method = RequestMethod.POST)
 	@CrossOrigin
-	public String insert() {
-		return "Spring boot funcionando !!!";
+	public void insert(@RequestBody Product product) throws Exception {
+
+		productService.insert(product);
+
 	}
 
-	@RequestMapping(path = "/update", method = RequestMethod.PUT)
+	@RequestMapping(path = "/product", method = RequestMethod.PUT)
 	@CrossOrigin
-	public String update() {
-		return "Spring boot funcionando !!!";
+	public void update(@RequestBody Product product) throws Exception {
+
+		productService.update(product);
+
 	}
 
-	@RequestMapping(path = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/product", method = RequestMethod.DELETE)
 	@CrossOrigin
-	public String delete() {
-		return "Spring boot funcionando !!!";
+	public void delete(@RequestParam("id") Integer id) throws Exception {
+
+		productService.delete(id);
+
 	}
 
 }

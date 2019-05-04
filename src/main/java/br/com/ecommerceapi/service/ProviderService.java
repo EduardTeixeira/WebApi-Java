@@ -1,9 +1,12 @@
 package br.com.ecommerceapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ecommerceapi.dao.ProviderDao;
+import br.com.ecommerceapi.entity.Provider;
 
 @Service
 public class ProviderService {
@@ -11,20 +14,28 @@ public class ProviderService {
 	@Autowired
 	private ProviderDao providerDao;
 
-	public String select() {
-		return "Spring boot funcionando !!!";
+	public List<Provider> select() throws Exception {
+
+		return providerDao.select();
+
 	}
 
-	public String insert() {
-		return "Spring boot funcionando !!!";
+	public void insert(Provider provider) throws Exception {
+
+		providerDao.insert(provider);
+
 	}
 
-	public String update() {
-		return "Spring boot funcionando !!!";
+	public void update(Provider provider) throws Exception {
+
+		providerDao.update(provider);
+
 	}
 
-	public String delete() {
-		return "Spring boot funcionando !!!";
+	public void delete(Integer id) throws Exception {
+
+		providerDao.delete(id);
+		
 	}
 
 }
