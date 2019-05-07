@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.ecommerceapi.database.MakeConnection;
 import br.com.ecommerceapi.entity.Product;
 import br.com.ecommerceapi.util.ConnectionConfiguration;
 
@@ -22,7 +23,8 @@ public class ProductDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" DELETE FROM product");
@@ -56,7 +58,8 @@ public class ProductDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" INSERT INTO product");
@@ -103,7 +106,8 @@ public class ProductDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" SELECT id, name, cost_purchase, cost_sale, quantity");
@@ -156,7 +160,8 @@ public class ProductDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" UPDATE product");

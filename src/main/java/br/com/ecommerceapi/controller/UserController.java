@@ -1,5 +1,7 @@
 package br.com.ecommerceapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,11 +19,21 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	@CrossOrigin
+	public User login(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception {
+		
+		return userService.login(username, password);
+		
+	}
 
 	@RequestMapping(path = "/user", method = RequestMethod.GET)
 	@CrossOrigin
-	public String select() throws Exception {
-		return "Spring boot funcionando !!!";
+	public List<User> select() throws Exception {
+		
+		return userService.select();
+		
 	}
 
 	@RequestMapping(path = "/user", method = RequestMethod.POST)

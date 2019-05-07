@@ -8,11 +8,65 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.ecommerceapi.database.MakeConnection;
 import br.com.ecommerceapi.entity.User;
 import br.com.ecommerceapi.util.ConnectionConfiguration;
 
 @Service
 public class UserDao {
+
+	public User login(User user) throws Exception {
+
+		PreparedStatement prepStat = null;
+		Connection conn = null;
+		ResultSet rs = null;
+
+		try {
+
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
+
+			StringBuilder sql = new StringBuilder();
+			sql.append(" SELECT id, username, password");
+			sql.append(" FROM user");
+			sql.append(" WHERE username = ? AND password = ?");
+
+			prepStat = conn.prepareStatement(sql.toString());
+
+			prepStat.setString(1, user.getUsername());
+
+			prepStat.setString(2, user.getPassword());
+
+			rs = prepStat.executeQuery();
+
+			User userReturn = new User();
+
+			while (rs.next()) {
+
+				userReturn.setId(rs.getInt("id"));
+
+				userReturn.setUsername(rs.getString("username"));
+
+				userReturn.setPassword(rs.getString("password"));
+
+				return userReturn;
+
+			}
+
+			return null;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			ConnectionConfiguration.db(prepStat, rs, conn);
+
+		}
+	}
 
 	public void delete(Integer id) throws Exception {
 
@@ -22,7 +76,8 @@ public class UserDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			conn = MakeConnection.con;
+			//conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" DELETE FROM user");
@@ -56,7 +111,8 @@ public class UserDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			conn = MakeConnection.con;
+			//conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" INSERT INTO user");
@@ -99,7 +155,8 @@ public class UserDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			conn = MakeConnection.con;
+			//conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" SELECT id, username, password");
@@ -148,7 +205,8 @@ public class UserDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			conn = MakeConnection.con;
+			//conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" UPDATE user");

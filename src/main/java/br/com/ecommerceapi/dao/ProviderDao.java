@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.ecommerceapi.database.MakeConnection;
 import br.com.ecommerceapi.entity.Provider;
 import br.com.ecommerceapi.util.ConnectionConfiguration;
 
@@ -22,7 +23,8 @@ public class ProviderDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" DELETE FROM provider");
@@ -56,7 +58,8 @@ public class ProviderDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" INSERT INTO provider");
@@ -99,7 +102,8 @@ public class ProviderDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" SELECT id, name, email");
@@ -148,7 +152,8 @@ public class ProviderDao {
 
 		try {
 
-			conn = br.com.ecommerceapi.database.Connection.getConnectionMySql();
+			MakeConnection.Conectar();
+			conn = MakeConnection.con;
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" UPDATE provider");
